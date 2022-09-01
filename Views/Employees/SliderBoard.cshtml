@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CheckInCheckOutBoard6.Models.Employee>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	ViewData["Title"] = "Check-in-check-out board";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Check-in-check-out board</h1>
+</div>
+<style>
+	table, th
+</style>
+<body>
+	<br />
+	<br />
+	<h3>Who is present in the office Today</h3>
+	<br />
+	<br />
+
+	<table style="width:100%">
+		<tr>
+			<th>Present</th>
+			<th>Not present</th>
+		</tr>
+		@foreach (var item in Model)
+		{
+			<tr>
+				@if (item.IsPresent == true)
+				{
+					//<td>@Html.DisplayFor(modelItem => item.Name) @Html.ActionLink("Press me", "ChangePresence",item.ID) </td>
+					<td><a asp-action="ChangePresence" asp-route-id=@item.ID>@item.Name</a></td>
+					<td></td>
+				}
+				else
+				{
+					<td></td>
+					<td><a asp-action="ChangePresence" asp-route-id=@item.ID>@item.Name</a></td>
+				}
+
+
+			</tr>
+		}
+	</table>
+
+</body>
